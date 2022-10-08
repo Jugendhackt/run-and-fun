@@ -42,6 +42,7 @@ function love.update()
     if playerSkin == "froggy" then   jumpKauntersave = 1 fallspeed = 1 end
     if playerSkin == "slime" then  jumpKauntersave = 2 fallspeed = 1 end
     if playerSkin == "anvil" then  jumpKauntersave = 1  fallspeed = 9 end
+    if playerSkin == "slime-and-umbrella" then  jumpKauntersave = 2  fallspeed = 0.4 end
     if xSpike + x >290 and xSpike + x <310 and y >480 and y <500 then start = 0 speed =0 end
 end
 function love.keypressed(key, scancode, isrepeat)
