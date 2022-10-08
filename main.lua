@@ -14,7 +14,7 @@ fallspeed = 1
 y = 488
 function love.load()
     froggy = love.graphics.newImage("froggy.png") player = froggy
-    floor = love.graphics.newImage("floor.png") points = text/10
+    floor = love.graphics.newImage("floor.png") 
     spike = love.graphics.newImage("spike.png")
     piu = love.audio.newSource("piu.mp3","static")
     startbaton = love.graphics.newImage("start button.png")
@@ -34,7 +34,7 @@ function love.draw()
         love.graphics.draw(spike, xSpike+x, 500-2)
         love.graphics.print( text, 750, 20)
     end
-    if start == 0 then
+    if start == 0 then love.timer.sleep(s)
         love.graphics.draw(startbaton, 350, 200)
         love.graphics.draw(skinbaton, 350, 300)
         love.graphics.print( points, 750, 20) 
@@ -66,7 +66,7 @@ function love.update()
     if player == anvil then  jumpKauntersave = 1  fallspeed = 9 end
     if player == slime_and_umbrella then  jumpKauntersave = 2  fallspeed = 0.4 end
     if player == plane then  jumpKauntersave = 10  fallspeed = 0.8 end 
-    if xSpike + x >290 and xSpike + x <310 and y >480 and y <500 then start = 0 speed =0 end
+    if xSpike + x >290 and xSpike + x <310 and y >480 and y <500 then start = 0 speed =0 points = points + text/10 end
 end
 function love.keypressed(key, scancode, isrepeat)
    if jumpKaunter > 0 then 
