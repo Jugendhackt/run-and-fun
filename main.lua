@@ -8,12 +8,13 @@ jumpKauntersave = 1
 start = 0
 resettime = 3
 skin = 0
+points = 0
 text = "0"
 fallspeed = 1
 y = 488
 function love.load()
     froggy = love.graphics.newImage("froggy.png") player = froggy
-    floor = love.graphics.newImage("floor.png")
+    floor = love.graphics.newImage("floor.png") points = text/10
     spike = love.graphics.newImage("spike.png")
     piu = love.audio.newSource("piu.mp3","static")
     startbaton = love.graphics.newImage("start button.png")
@@ -36,7 +37,8 @@ function love.draw()
     if start == 0 then
         love.graphics.draw(startbaton, 350, 200)
         love.graphics.draw(skinbaton, 350, 300)
-        --love.graphics.draw(, x+800, 0)
+        love.graphics.print( points, 750, 20) 
+        
     end
     if skin == 1 then start = 3
         love.graphics.draw(slime_and_umbrella, 350, 100)--
