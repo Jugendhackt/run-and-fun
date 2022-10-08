@@ -26,7 +26,7 @@ function love.draw()
     end
     if start == 0 then
         love.graphics.draw(startbaton, 350, 200)
-        love.graphics.draw(skinbaton, 350, 500)
+        love.graphics.draw(skinbaton, 350, 300)
         --love.graphics.draw(, x+800, 0)
     end
 end
@@ -51,8 +51,10 @@ function love.keypressed(key, scancode, isrepeat)
             jumpKaunter=jumpKaunter-1 
         
         end
-    
     end
+    if key == "f" then love.window.setFullscreen(true) end    
+    if key == "tab" then start = 0 end
+    if key == "escape" then love.window.close() end
 end
 function love.mousepressed(x, y, button, istouch)
     y = y-50 x = 300
