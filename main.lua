@@ -16,7 +16,7 @@ points = tonumber(contents)
 text = "0"
 fallspeed = 1
 y = 488
-functio love.load()
+function love.load()
     froggy = love.graphics.newImage("froggy.png") player = froggy
     floor = love.graphics.newImage("floor.png") 
     spike = love.graphics.newImage("spike.png")
