@@ -8,7 +8,8 @@ jumpKauntersave = 1
 start = 0
 resettime = 3
 skin = 0
-points = 0
+contents, size = love.filesystem.read("unintresant.txt")
+points = tonumber(contents)
 text = "0"
 fallspeed = 1
 y = 488
@@ -25,6 +26,8 @@ function love.load()
     plane = love.graphics.newImage("plane.png")
     slime = love.graphics.newImage("slime.png")
     anvil = love.graphics.newImage("anvil.png")
+    coin = love.graphics.newImage("coin.png")
+    logo = love.graphics.newImage("logo.png")
 end
 function love.draw()
     if start == 1 then 
@@ -37,7 +40,9 @@ function love.draw()
     if start == 0 then 
         love.graphics.draw(startbaton, 350, 200)
         love.graphics.draw(skinbaton, 350, 300)
-        love.graphics.print( points, 750, 20) 
+        love.graphics.print(points, 750, 20)
+        love.graphics.draw(coin, 700, 20) 
+        love.graphics.draw(logo, 320, 50, 0, 0.5, 0.5)
         
     end
     if skin == 1 then start = 3
@@ -54,11 +59,16 @@ end
 function love.update()
     x=x-speed
     start=start
-    seconds = love.timer.getTime()-resettime text = seconds
-    if x<-800 then x=0 end
-    speed = seconds
-    if speed > 13 then speed=13 end
-    y=y+fallspeed
+    if start == 1 then seconds = love.timer.getTime()-resettime text = seconds 
+        if x<-800 then x=0 end
+        speed = seconds
+        if speed > 13 then speed=13 end
+        y=y+fallspeed
+        if xSpike + x >290 and xSpike + x <310 and y >480 and y <500 then 
+            start = 0 speed =0 points = points + text/10
+            love.filesystem.write( "unintresant.txt", points) 
+        end
+    end
     if y > 488 then y=488 end
     if y == 488 then jumpKaunter = jumpKauntersave end
     if player == froggy then   jumpKauntersave = 1 fallspeed = 1 end
@@ -66,7 +76,7 @@ function love.update()
     if player == anvil then  jumpKauntersave = 1  fallspeed = 9 end
     if player == slime_and_umbrella then  jumpKauntersave = 2  fallspeed = 0.4 end
     if player == plane then  jumpKauntersave = 10  fallspeed = 0.8 end 
-    if xSpike + x >290 and xSpike + x <310 and y >480 and y <500 then start = 0 speed =0 points = points + text/10 end
+    
 end
 function love.keypressed(key, scancode, isrepeat)
    if jumpKaunter > 0 then 
