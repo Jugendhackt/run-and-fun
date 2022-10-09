@@ -7,9 +7,13 @@ jumpKaunter = 1
 jumpKauntersave = 1
 start = 0
 resettime = 3
+saveplayer = 1000000
 skin = 0
 if not love.filesystem.exists("unintresant.txt") then 
-    love.filesystem.write("unintresant.txt", 0)
+    love.filesystem.write("unintresant.txt", saveplayer)
+end
+if not love.filesystem.exists("player,save.txt") then
+    love.filesystem.write("player,save.txt", saveplayer)
 end
 contents, size = love.filesystem.read("unintresant.txt")
 points = tonumber(contents)
@@ -50,11 +54,11 @@ function love.draw()
     end
     if skin == 1 then start = 3
         love.graphics.draw(slime_and_umbrella, 350, 100)--
-        love.graphics.draw(slime, 350, 150)--
-        love.graphics.draw(plane, 350, 200)--
-        love.graphics.draw(froggy2, 350, 250)--
-        love.graphics.draw(froggyshild, 350, 300)--
-        love.graphics.draw(froggy, 350, 350)--
+        love.graphics.draw(slime, 350, 150)
+        love.graphics.draw(plane, 350, 200)
+        love.graphics.draw(froggy2, 350, 250)
+        love.graphics.draw(froggyshild, 350, 300)
+        love.graphics.draw(froggy, 350, 350)
         love.graphics.draw(anvil, 350, 400)
 
     end
@@ -79,6 +83,8 @@ function love.update()
     if player == anvil then  jumpKauntersave = 1  fallspeed = 9 end
     if player == slime_and_umbrella then  jumpKauntersave = 2  fallspeed = 0.4 end
     if player == plane then  jumpKauntersave = 10  fallspeed = 0.8 end 
+    if player == froggyshild then  jumpKauntersave = 1  fallspeed = 1 end
+    if player == froggy2 then  jumpKauntersave = 1  fallspeed = 0.99 end
     
 end
 function love.keypressed(key, scancode, isrepeat)
