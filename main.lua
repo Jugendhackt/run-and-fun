@@ -8,12 +8,15 @@ jumpKauntersave = 1
 start = 0
 resettime = 3
 skin = 0
+if not love.filesystem.exists("unintresant.txt") then 
+    love.filesystem.write("unintresant.txt", 0)
+end
 contents, size = love.filesystem.read("unintresant.txt")
 points = tonumber(contents)
 text = "0"
 fallspeed = 1
 y = 488
-function love.load()
+functio love.load()
     froggy = love.graphics.newImage("froggy.png") player = froggy
     floor = love.graphics.newImage("floor.png") 
     spike = love.graphics.newImage("spike.png")
@@ -66,7 +69,7 @@ function love.update()
         y=y+fallspeed
         if xSpike + x >290 and xSpike + x <310 and y >480 and y <500 then 
             start = 0 speed =0 points = points + text/10
-            love.filesystem.write( "unintresant.txt", points) 
+            love.filesystem.write("unintresant.txt", points) 
         end
     end
     if y > 488 then y=488 end
