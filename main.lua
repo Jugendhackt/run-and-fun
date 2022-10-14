@@ -35,6 +35,7 @@ function love.load()
     anvil = love.graphics.newImage("anvil.png")
     coin = love.graphics.newImage("coin.png")
     logo = love.graphics.newImage("logo.png")
+    ramen = love.graphics.newImage("ramen.png")
 end
 function love.draw()
     if start == 1 then 
@@ -64,23 +65,24 @@ function love.draw()
     end
 end
 function love.update()
-    x=x-speed
+    xSpike = love.math.random()*400+800                                 
+    x=x-speed                  
     start=start
-    if start == 1 then seconds = love.timer.getTime()-resettime text = seconds 
-        if x<-800 then x=0 end
+    if start == 1 then seconds = love.timer.getTime()-resettime text = seconds                  
+        if x<-800 then x=0 end                     
         speed = seconds
         if speed > 13 then speed=13 end
         y=y+fallspeed
         if xSpike + x >290 and xSpike + x <310 and y >480 and y <500 then 
-            start = 0 speed =0 points = points + text/10
+            start = 0 speed =0 points = points + text/10                 
             love.filesystem.write("unintresant.txt", points) 
         end
-    end
+    end                
     if y > 488 then y=488 end
     if y == 488 then jumpKaunter = jumpKauntersave end
     if player == froggy then   jumpKauntersave = 1 fallspeed = 1 end
-    if player == slime then  jumpKauntersave = 2 fallspeed = 1 end
-    if player == anvil then  jumpKauntersave = 1  fallspeed = 9 end
+    if player == slime then  jumpKauntersave = 2 fallspeed = 1 end                                                                                                                                                                                                                 
+    if player == anvil then  jumpKauntersave = 1  fallspeed = 9 end                                                                                                       
     if player == slime_and_umbrella then  jumpKauntersave = 2  fallspeed = 0.4 end
     if player == plane then  jumpKauntersave = 10  fallspeed = 0.8 end 
     if player == froggyshild then  jumpKauntersave = 1  fallspeed = 1 end
@@ -109,7 +111,7 @@ function love.mousepressed(x,y, button, istouch)
         if y  >275 and y <290 and x  >300 and x <400 then player = froggy2 end
         if y  >295 and y <325 and x  >300 and x <400 then player = froggyshild end
         if y  >330 and y <390 and x  >300 and x <400 then player = froggy end
-        if y  >395 and y <450 and x  >300 and x <400 then player = anvil end
+        if y  >395 and y <450 and x  >300 and x <400 then player = anvil and love.graphics.draw(ramen, 395, 300) end
     end
     if start == 0 then
         if y  >150 and y <250 and x  >300 and x <400 then start = 1 skin = 0 end
